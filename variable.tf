@@ -1,7 +1,6 @@
 variable "region" {
   type        = string
   description = "Region to set up infrastructure"
-  default     = "us-east-1"
 }
 
 variable "profile" {
@@ -17,20 +16,17 @@ variable "vpc_name" {
 variable "vpc_count" {
   type        = number
   description = "AWS VPC to be created"
-  default     = 1
 }
 
 
 variable "vpc_cidrs" {
   description = "List of CIDR blocks for each VPC"
   type        = list(string)
-  default     = ["10.0.0.0/16"]
 }
 
 variable "availability_zones" {
   description = "List of Availability Zones"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 variable "pr_dest_cidr" {
