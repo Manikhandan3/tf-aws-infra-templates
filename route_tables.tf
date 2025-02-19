@@ -4,7 +4,7 @@ resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.my_vpc[count.index].id
 
   tags = {
-    Name = "Public-RouteTable-${count.index}"
+    Name = "Public-RouteTable-${var.vpc_name}-${count.index}"
   }
 }
 
@@ -14,6 +14,6 @@ resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.my_vpc[count.index].id
 
   tags = {
-    Name = "Private-RouteTable-${count.index}"
+    Name = "Private-RouteTable-${var.vpc_name}-${count.index}"
   }
 }

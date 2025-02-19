@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+    types: [opened, synchronize, reopened]
 
 jobs:
   terraform:
@@ -23,7 +24,7 @@ jobs:
         run: terraform init
 
       - name: Check Terraform formatting
-        run: terraform fmt -recursive
+        run: terraform fmt -check-recursive
 
       - name: Validate Terraform configuration
         run: terraform validate
