@@ -36,5 +36,4 @@ variable "availability_zones" {
 variable "pr_dest_cidr" {
   description = "destination CIDR of a public route"
   type        = string
-  default     = "0.0.0.0/0"
 }
