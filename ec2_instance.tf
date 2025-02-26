@@ -5,6 +5,7 @@ resource "aws_instance" "app_instance" {
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public_subnets[count.index * length(var.availability_zones)].id
   vpc_security_group_ids = [aws_security_group.application_sg[count.index].id]
+  key_name               = aws_key_pair.app_key_pair.key_name
 
 
   disable_api_termination = false

@@ -39,3 +39,6 @@ terraform.rc
 
 #ide config files
 .idea
+
+#key-pais
+*.pem

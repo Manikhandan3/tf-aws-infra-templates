@@ -53,5 +53,10 @@ variable "key_name" {
 variable "application_port" {
   type        = number
   description = "Port on which the application runs"
-  default     = 8080
+}
+
+variable "key_output_path" {
+  type        = string
+  description = "Path where the generated private key will be saved"
+  default     = "."
 }
