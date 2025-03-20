@@ -36,6 +36,14 @@ resource "aws_security_group" "application_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # General egress rule for other internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "App-SG-${var.vpc_name}-${count.index}"
   }

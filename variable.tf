@@ -60,3 +60,27 @@ variable "key_output_path" {
   description = "Path where the generated private key will be saved"
   default     = "."
 }
+
+variable "db_password" {
+  type        = string
+  description = "Database master password"
+  sensitive   = true
+}
+
+variable "db_engine" {
+  type        = string
+  description = "Database engine type"
+  default     = "mysql"
+}
+
+variable "db_engine_version" {
+  type        = string
+  description = "Database engine version"
+  default     = "8.0"
+}
+
+variable "db_dialect" {
+  type        = string
+  description = "Database dialect"
+  default     = "mysql"
+}
