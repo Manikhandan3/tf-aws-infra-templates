@@ -52,6 +52,12 @@ resource "aws_iam_role_policy_attachment" "s3_access_attachment" {
   policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "cloudwatch_agent_attachment" {
+  role       = aws_iam_role.ec2_s3_access_role.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+}
+
+
 # Create instance profile
 resource "aws_iam_instance_profile" "ec2_s3_profile" {
   name = "ec2-s3-profile"

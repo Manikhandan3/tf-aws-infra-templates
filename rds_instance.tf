@@ -7,8 +7,8 @@ resource "aws_db_instance" "db_instance" {
   instance_class             = "db.t3.micro"
   allocated_storage          = 20
   storage_type               = "gp3"
-  db_name                    = "csye6225"
-  username                   = "csye6225"
+  db_name                    = var.db_name
+  username                   = var.db_username
   password                   = var.db_password
   parameter_group_name       = aws_db_parameter_group.db_parameter_group.name
   db_subnet_group_name       = aws_db_subnet_group.db_subnet_group[count.index].name

@@ -10,6 +10,11 @@ resource "aws_instance" "app_instance" {
 
   user_data = <<-EOF
   #!/bin/bash
+  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
+  -a fetch-config -m ec2 \
+  -c file:/opt/csye6225/webapp/cloudwatch-agent.json \
+  -s
+
   mkdir -p /opt/csye6225/webapp
 
   cat > /opt/csye6225/webapp/.env << EOL
@@ -22,6 +27,9 @@ resource "aws_instance" "app_instance" {
   S3_BUCKET=${aws_s3_bucket.app_bucket.id}
   AWS_REGION=${var.region}
   EOL
+
+  sudo chown csye6225:csye6225 /opt/csye6225/webapp/.env
+  sudo chmod 750 /opt/csye6225/webapp/.env
 
   EOF
 
