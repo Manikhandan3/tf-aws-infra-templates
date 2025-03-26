@@ -84,3 +84,13 @@ variable "db_dialect" {
   description = "Database dialect"
   default     = "mysql"
 }
+
+variable "db_name" {
+  type        = string
+  description = "Database name"
+}
+
+variable "db_username" {
+  type        = string
+  description = "Database username"
+}
