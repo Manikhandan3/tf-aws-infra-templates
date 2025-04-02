@@ -94,3 +94,70 @@ variable "db_username" {
   type        = string
   description = "Database username"
 }
+
+variable "route53_zone_id" {
+  type        = string
+  description = "Route53 hosted zone ID for the domain"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name for the application"
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment name"
+  default     = "dev"
+}
+
+variable "min_capacity_asg" {
+  type        = number
+  description = "minimum capacity of auto scaling group"
+  default     = 3
+}
+
+variable "max_capacity_asg" {
+  type        = number
+  description = "maximum capacity of auto scaling group"
+  default     = 5
+}
+
+variable "des_capacity_asg" {
+  type        = number
+  description = "desired capacity of auto scaling group"
+  default     = 3
+}
+
+variable "health_check_type" {
+  type        = string
+  description = "Auto scaling group health check type"
+  default     = "ELB"
+}
+
+variable "evaluation_period" {
+  type        = number
+  description = "evaluation period for alarm"
+  default     = 1
+}
+
+variable "period" {
+  type        = number
+  description = "time period for alarm"
+  default     = 60
+}
+
+variable "scale_up_threshold" {
+  type        = number
+  description = "scale up threshold"
+  default     = 6.85
+}
+
+variable "scale_down_threshold" {
+  type        = number
+  description = "scale down threshold"
+  default     = 6.25
+}
+
+
+
