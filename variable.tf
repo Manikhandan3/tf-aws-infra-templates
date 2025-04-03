@@ -159,5 +159,35 @@ variable "scale_down_threshold" {
   default     = 6.25
 }
 
+variable "health_check_path" {
+  type        = string
+  description = "health check path for load balancer"
+  default     = "/healthz"
+}
+
+variable "healthcheck_interval" {
+  type        = number
+  description = "health check interval"
+  default     = 30
+}
+
+variable "healthy_threshold" {
+  type        = number
+  description = "healthy threshold for load balancer"
+  default     = 3
+}
+
+variable "unhealthy_threshold" {
+  type        = number
+  description = "unhealthy threshold for load balancer"
+  default     = 3
+}
+
+variable "healthcheck_timeout" {
+  type        = number
+  description = "health check timeout"
+  default     = 5
+}
+
 
 

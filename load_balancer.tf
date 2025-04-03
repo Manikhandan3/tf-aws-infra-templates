@@ -24,12 +24,12 @@ resource "aws_lb_target_group" "app_tg" {
 
   health_check {
     enabled             = true
-    interval            = 30
-    path                = "/healthz"
+    interval            = var.healthcheck_interval
+    path                = var.health_check_path
     port                = "traffic-port"
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
-    timeout             = 5
+    healthy_threshold   = var.healthy_threshold
+    unhealthy_threshold = var.unhealthy_threshold
+    timeout             = var.healthcheck_timeout
     protocol            = "HTTP"
     matcher             = "200"
   }
