@@ -20,10 +20,6 @@ resource "aws_launch_template" "app_launch_template" {
     -c file:/opt/csye6225/webapp/cloudwatch-agent.json \
     -s
 
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install
-
     DB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id ${aws_secretsmanager_secret.db_password_secret.name} --region ${var.region} --query SecretString --output text | sed -e 's/.*"password":"\([^"]*\)".*/\1/')
 
     mkdir -p /opt/csye6225/webapp
