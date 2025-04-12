@@ -20,6 +20,12 @@ resource "aws_launch_template" "app_launch_template" {
     -c file:/opt/csye6225/webapp/cloudwatch-agent.json \
     -s
 
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+
+    DB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id ${aws_secretsmanager_secret.db_password_secret.name} --region ${var.region} --query SecretString --output text | sed -e 's/.*"password":"\([^"]*\)".*/\1/')
+
     mkdir -p /opt/csye6225/webapp
 
     cat > /opt/csye6225/webapp/.env << EOL
@@ -27,7 +33,7 @@ resource "aws_launch_template" "app_launch_template" {
     PORT=${var.application_port}
     DB_NAME_DEV=${aws_db_instance.db_instance[0].db_name}
     DB_USERNAME_DEV=${aws_db_instance.db_instance[0].username}
-    DB_PASSWORD_DEV=${var.db_password}
+    DB_PASSWORD_DEV=$DB_PASSWORD
     DB_DIALECT_DEV=${var.db_dialect}
     S3_BUCKET=${aws_s3_bucket.app_bucket.id}
     AWS_REGION=${var.region}
@@ -47,6 +53,8 @@ resource "aws_launch_template" "app_launch_template" {
       volume_size           = 8
       volume_type           = "gp3"
       delete_on_termination = true
+      encrypted             = true
+      kms_key_id            = aws_kms_key.ec2_encryption_key.arn
     }
   }
 

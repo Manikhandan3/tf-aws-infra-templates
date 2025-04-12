@@ -61,12 +61,6 @@ variable "key_output_path" {
   default     = "."
 }
 
-variable "db_password" {
-  type        = string
-  description = "Database master password"
-  sensitive   = true
-}
-
 variable "db_engine" {
   type        = string
   description = "Database engine type"
@@ -132,7 +126,7 @@ variable "des_capacity_asg" {
 variable "health_check_type" {
   type        = string
   description = "Auto scaling group health check type"
-  default     = "ELB"
+  default     = "EC2"
 }
 
 variable "evaluation_period" {
@@ -187,6 +181,11 @@ variable "healthcheck_timeout" {
   type        = number
   description = "health check timeout"
   default     = 5
+}
+
+variable "ssl_certificate_arn" {
+  type        = string
+  description = "ARN of the SSL certificate in ACM to use with the load balancer"
 }
 
 
