@@ -39,11 +39,13 @@ resource "aws_lb_target_group" "app_tg" {
   }
 }
 
-resource "aws_lb_listener" "http" {
+resource "aws_lb_listener" "https" {
   count             = var.vpc_count
   load_balancer_arn = aws_lb.app_lb[count.index].arn
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = var.ssl_certificate_arn
 
   default_action {
     type             = "forward"
